@@ -1,0 +1,96 @@
+{
+  "name": "list-continuation",
+  "displayName": "list-continuation",
+  "description": "Auto-continues custom list entries on Enter.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "List Continuation",
+      "properties": {
+        "list-continuation.rules": {
+          "type": "object",
+          "description": "Language-specific continuation rules.",
+          "default": {},
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "string",
+                  "description": "String (without leading whitespace) to match the start of a list item (e.g., \"\\\\item\")."
+                },
+                "continue": {
+                  "type": "string",
+                  "description": "String to continue the next list item."
+                },
+                "removeIfEmpty": {
+                  "type": "boolean",
+                  "description": "Whether to remove the line if it's empty (i.e., only the matched 'start').",
+                  "default": true
+                }
+              },
+              "required": ["start", "continue"]
+            }
+          }
+        },
+        "list-continuation.disabled-languages": {
+          "type": "array",
+          "description": "Languages where the list continuation enter keybind is disabled.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "list-continuation.enable-smart-tabbing": {
+          "type": "boolean",
+          "description": "Tab the whole line when pressing Tab on a valid list rule.",
+          "default": true
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "list-continuation.onEnter",
+        "title": "List Continuation: Handle Enter Key"
+      },
+      {
+        "command": "list-continuation.onTab",
+        "title": "List Continuation: Handle Tab Key"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "enter",
+        "command": "list-continuation.onEnter",
+        "when": "editorTextFocus && editorLangId not in config.list-continuation.disabled-languages && !suggestWidgetVisible && !editorReadonly"
+      },
+      {
+        "key": "tab",
+        "command": "list-continuation.onTab",
+        "when": "editorTextFocus && config.list-continuation.enable-smart-tabbing && editorLangId not in config.list-continuation.disabled-languages && !suggestWidgetVisible && !editorReadonly"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.100.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "eslint": "^9.25.1",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
