@@ -1,11 +1,16 @@
 {
   "name": "list-continuation",
-  "displayName": "list-continuation",
+  "displayName": "List Continuation",
   "description": "Auto-continues custom list entries on Enter.",
   "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/haminic/list-continuation"
+  },
+  "publisher": "haminic",
+  "author": {
+  	"name": "haminic",
+  	"url": "https://github.com/haminic/"
   },
   "engines": {
     "vscode": "^1.100.0"
