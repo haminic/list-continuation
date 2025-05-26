@@ -3,6 +3,10 @@
   "displayName": "list-continuation",
   "description": "Auto-continues custom list entries on Enter.",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haminic/list-continuation"
+  },
   "engines": {
     "vscode": "^1.100.0"
   },
