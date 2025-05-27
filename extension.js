@@ -39,26 +39,23 @@ function onEnter() {
 
 		let matched = false;
 		for (const rule of langRules) {
-			const regexString = "^\\s*" + escapeForRegex(rule.start);
+			// if prefix does not match or cursor is not after prefix
+			const match = (new RegExp(`^\\s*${escapeForRegex(rule.start)}`)).exec(line.text);
+			if (!match || cursorPos.character < match[0].length) continue;
+			const stringAfterPrefix = line.text.slice(match[0].length);
 
-			// removes line if the prefix is there, but line is empty
-			if (rule.removeIfEmpty && (new RegExp(`${regexString}\\s*$`)).test(line.text)) {
+			// remove prefix if after prefix is empty, else continue the list
+			if (rule.removeIfEmpty && (new RegExp(`^\\s*$`)).test(stringAfterPrefix)) {
 				const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end);
 				actions.push(editBuilder => editBuilder.delete(rangeToDelete));
-				matched = true;
-				matchedNothing = false;
-				break;
-			} 
-
-			// continues the list if prefix is there, and cursor is after the prefix 
-			const match = (new RegExp(`(${regexString})\\s*[^\\s]+.*`)).exec(line.text);
-			if (match && cursorPos.character >= match[1].length) {
+			} else {
 				const itemString = `\n${indentation}${rule.continue}`;
 				actions.push(editBuilder => editBuilder.insert(cursorPos, itemString));
-				matched = true;
-				matchedNothing = false;
-				break;
-			} 
+			}
+
+			matched = true;
+			matchedNothing = false;
+			break;
 		}
 
 		if (!matched) {
