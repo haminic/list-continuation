@@ -2,7 +2,7 @@
   "name": "list-continuation",
   "displayName": "List Continuation",
   "description": "Auto-continues custom list entries on Enter.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/haminic/list-continuation"
@@ -58,11 +58,6 @@
             "type": "string"
           },
           "default": []
-        },
-        "list-continuation.enable-smart-tabbing": {
-          "type": "boolean",
-          "description": "Tab the whole line when pressing Tab on a valid list rule.",
-          "default": true
         }
       }
     },
@@ -70,22 +65,13 @@
       {
         "command": "list-continuation.onEnter",
         "title": "List Continuation: Handle Enter Key"
-      },
-      {
-        "command": "list-continuation.onTab",
-        "title": "List Continuation: Handle Tab Key"
       }
     ],
     "keybindings": [
       {
         "key": "enter",
         "command": "list-continuation.onEnter",
-        "when": "editorTextFocus && editorLangId not in config.list-continuation.disabled-languages && !suggestWidgetVisible && !editorReadonly"
-      },
-      {
-        "key": "tab",
-        "command": "list-continuation.onTab",
-        "when": "editorTextFocus && config.list-continuation.enable-smart-tabbing && editorLangId not in config.list-continuation.disabled-languages && !suggestWidgetVisible && !editorReadonly"
+        "when": "editorTextFocus && !suggestWidgetVisible && !editorReadonly"
       }
     ]
   },
