@@ -14,9 +14,6 @@ This was made quickly as a personal tool, mainly for efficiency with custom list
 - **Smart list continuation**  
   Pressing `Enter` at the end of a list item will automatically continue the list.
 
-- **Smart tabbing**  
-  Pressing `Tab` on an empty list item will indent the entire item, not just insert a tab character (can be disabled).
-
 - **Auto-deletion of empty list items**  
   Akin to LaTeX Workshop, pressing `Enter` on an empty list item (i.e. just the prefix with no content), the list prefix will be deleted instead (can be disabled).
 
@@ -36,7 +33,6 @@ List continuation rules are set in your `settings.json` under `list-continuation
 
 Other options include:
 - `list-continuation.disabled-languages`: List of language IDs that this extension will not take effect.
-- `list-continuation.enable-smart-tabbing`: Toggle for smart tabbing.
 
 ## ▸ Credits 💳
 

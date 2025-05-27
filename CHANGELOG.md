@@ -1,11 +1,8 @@
 # Changelog
 
-## [v0.0.1]
+## [v0.0.2]
 
-### Added:
+### Changes:
 
-- Initial release
-- Custom list continuation rules per language
-- Smart list continuation on Enter
-- Smart tabbing on empty list items
-- Auto-deletion of empty list items
+- Removed the smart tabbing feature because it conflicted with other extensions and the feature already exists in vanilla VSCode.
+- Fixed issues with pressing `Enter` before the end of a list prefix.
