@@ -1,8 +1,7 @@
 # Changelog
 
-## [v0.0.2]
+## [v0.0.3]
 
 ### Changes:
 
-- Removed the smart tabbing feature because it conflicted with other extensions and the feature already exists in vanilla VSCode.
-- Fixed issues with pressing `Enter` before the end of a list prefix.
+- Switched to TypeScript.
